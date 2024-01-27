@@ -1,9 +1,13 @@
 "use client";
 
-// import { useCartCount } from "#/components/cart-count-context";
+import { useContext } from "react";
+import { CartContext } from "../context/ShopContext";
 
 export function CartCount({ initialCartCount }: { initialCartCount: number }) {
-  //   const [count] = useCartCount(initialCartCount);
-  //   return <span>{count}</span>;
-  return <span>2</span>;
+  const { cart } = useContext(CartContext);
+  let cartQuantity = 0;
+  cart.map((item: { quantity: number }) => {
+    return (cartQuantity += item?.quantity);
+  });
+  return <span>{cartQuantity}</span>;
 }

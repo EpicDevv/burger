@@ -1,9 +1,9 @@
-import { ThemeSelector } from "./components/ThemeSelector";
+import ProductList from "./components/ProductList";
 
 export default function Home() {
   return (
-    <div className="relative">
-
+    <div className="bg-white dark:bg-[#0f0f0f]">
+      <ProductList />
     </div>
   );
 }
