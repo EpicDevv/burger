@@ -1,5 +1,9 @@
-import Image from "next/image";
+import { ThemeSelector } from "./components/ThemeSelector";
 
 export default function Home() {
-  return <div></div>;
+  return (
+    <div className="relative">
+      <ThemeSelector />
+    </div>
+  );
 }

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Providers } from "./providers";
 import { Inter } from "next/font/google";
+import Layout from "./components/Layout";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -36,7 +38,11 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Providers>
+          <Layout>{children}</Layout>
+        </Providers>
+      </body>
     </html>
   );
 }
