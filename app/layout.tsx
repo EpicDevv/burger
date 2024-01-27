@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Providers } from "./providers";
-import { Inter } from "next/font/google";
+import { inter } from "./ui/fonts";
 import Layout from "./components/Layout";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Burger",
@@ -17,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning lang="en">
       <head>
         <link
           rel="apple-touch-icon"
@@ -38,7 +36,7 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} antialiased`}>
         <Providers>
           <Layout>{children}</Layout>
         </Providers>
