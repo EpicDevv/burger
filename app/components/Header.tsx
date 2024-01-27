@@ -37,7 +37,7 @@ export function Header() {
         </div>
         <div className="flex shrink-0 gap-x-3">
           <CartToggle>
-            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full dark:bg-[#232D3F] bg-[#cacaca] text-white">
+            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full dark:bg-[#232D3F] border-1 border-[#008170] text-white">
               <ShoppingCartIcon className="w-6 text-[#008170] dark:text-[#008170]" />
               <div className="absolute -right-1 -top-1 flex h-4 w-4 text-white items-center justify-center rounded-full bg-[#008170] text-sm font-bold">
                 <Suspense fallback={<span></span>}>
