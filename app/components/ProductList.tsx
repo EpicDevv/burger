@@ -1,6 +1,6 @@
 import { fetchBurgers } from "../lib/data";
 import Link from "next/link";
-
+import { convertNameToUrl } from "../utils/helpers";
 export default async function ProductList() {
   const burgers = await fetchBurgers();
   return (
@@ -11,7 +11,10 @@ export default async function ProductList() {
         <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
           {burgers.products.map((burger: any) => {
             return (
-              <Link href="/" key={burger.id}>
+              <Link
+                href={`burger/${convertNameToUrl(burger.name)}`}
+                key={burger.id}
+              >
                 <div className="group relative flex flex-col overflow-hidden rounded-lg border border-[#008170] bg-white dark:bg-[#0f0f0f]">
                   <div className="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96">
                     <img
