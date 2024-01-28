@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface Icart {
   id: string;
@@ -42,6 +43,7 @@ export default function ShopProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const [cart, setCart] = useState<Icart[] | []>(() => {
     if (typeof window !== "undefined" && localStorage.getItem("cart")) {
       const savedCart = localStorage.getItem("cart");
@@ -91,6 +93,7 @@ export default function ShopProvider({
     const updatedCart = cart!.filter((items) => items.id !== item);
     setCart(updatedCart);
     if (cart!.length === 1) {
+      router.back();
       setCartOpen(false);
     }
   }

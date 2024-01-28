@@ -20,19 +20,26 @@ export default function Cart() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const submit = (e: any) => {
+    e.preventDefault();
+  };
   return (
     <div className="bg-white dark:bg-[#0F0F0F]">
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
         <h1 className="text-3xl font-bold tracking-tight dark:text-[#008170] text-gray-900 sm:text-4xl">
           Shopping Cart
         </h1>
-        <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
-          <section aria-labelledby="cart-heading" className="lg:col-span-7">
-            <h2 id="cart-heading" className="sr-only">
-              Items in your shopping cart
-            </h2>
+        {mounted ? (
+          <form
+            onSubmit={submit}
+            className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16"
+          >
+            <section aria-labelledby="cart-heading" className="lg:col-span-7">
+              <h2 id="cart-heading" className="sr-only">
+                Items in your shopping cart
+              </h2>
 
-            {mounted ? (
               <ul
                 role="list"
                 className="divide-y dark:divide-[#005B41]/40 divide-gray-200 border-b border-t border-gray-200 dark:border-[#005B41]/40"
@@ -114,11 +121,9 @@ export default function Cart() {
                   </li>
                 ))}
               </ul>
-            ) : null}
-          </section>
+            </section>
 
-          {/* Order summary */}
-          {mounted ? (
+            {/* Order summary */}
             <section
               aria-labelledby="summary-heading"
               className="mt-16 sticky top-0 rounded-lg dark:bg-[#232D3F] bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
@@ -153,14 +158,18 @@ export default function Cart() {
               <div className="mt-6">
                 <button
                   type="submit"
-                  className="w-full rounded-md border border-transparent bg-[#008170] px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-[#005B41] focus:outline-none"
+                  className={`${
+                    cartTotal === 0
+                      ? "cursor-not-allowed bg-[#008170]"
+                      : "cursor-pointer bg-[#008170] hover:bg-[#005B41]"
+                  } w-full rounded-md border border-transparent px-4 py-3 text-base font-medium text-white shadow-sm focus:outline-none`}
                 >
                   Checkout
                 </button>
               </div>
             </section>
-          ) : null}
-        </form>
+          </form>
+        ) : null}
       </div>
     </div>
   );

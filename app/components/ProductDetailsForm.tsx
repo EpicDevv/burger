@@ -9,6 +9,8 @@ import Link from "next/link";
 import { classNames } from "../utils/helpers";
 import { CartContext } from "../context/ShopContext";
 import AlertBox from "./AlertBox";
+import { useRouter } from "next/navigation";
+
 const sizes = [
   { name: "Small", description: "Not to share" },
   { name: "Medium", description: "Maybe share" },
@@ -21,6 +23,7 @@ export const ProductDetailsForm = ({
   product: any;
   fries: any;
 }) => {
+  const router = useRouter();
   const [selectedSize, setSelectedSize] = useState<{
     name: string;
     description: string;
@@ -57,6 +60,7 @@ export const ProductDetailsForm = ({
       quantity: 1,
       additionalItems: withFries === "yes" ? fries : null,
     };
+    router.push("/cart");
     add(cartItem);
   };
   return (
