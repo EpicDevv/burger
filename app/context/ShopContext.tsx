@@ -23,11 +23,13 @@ interface Icart {
 interface IcontextProps {
   remove: (item: string) => void;
   add: (newItem: Icart) => void;
+  updateQuantity: (value: string, product: Icart) => void;
   cart: Icart[] | null;
   cartOpen: boolean;
   setCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const CartContext = createContext<IcontextProps>({
+  updateQuantity: () => {},
   remove: () => {},
   add: () => {},
   cart: [],
@@ -93,6 +95,15 @@ export default function ShopProvider({
     }
   }
 
+  async function updateQuantity(value: string, product: Icart) {
+    const newCart = [...cart!];
+    for (let item of newCart) {
+      if (item.id === product.id) {
+        item.quantity = Number(value);
+        setCart(newCart);
+      }
+    }
+  }
   return (
     <CartContext.Provider
       value={{
@@ -101,6 +112,7 @@ export default function ShopProvider({
         cart,
         cartOpen,
         setCartOpen,
+        updateQuantity,
       }}
     >
       {children}

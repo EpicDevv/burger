@@ -17,7 +17,11 @@ const config: Config = {
       },
     },
   },
-  plugins: [nextui(), require("@tailwindcss/aspect-ratio")],
+  plugins: [
+    nextui(),
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/forms"),
+  ],
   darkMode: "class",
 };
 

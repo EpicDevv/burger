@@ -126,7 +126,15 @@ export const ProductDetailsForm = ({
               </div>
               <div className="sm:flex sm:justify-between">
                 {/* Size selector */}
-                <RadioGroup value={selectedSize} onChange={setSelectedSize}>
+                <RadioGroup
+                  value={selectedSize}
+                  onChange={(e) => {
+                    setSelectedSize(e);
+                    if (withFries === "no") {
+                      setWithFries("yes");
+                    }
+                  }}
+                >
                   <RadioGroup.Label className="block text-sm font-medium dark:text-white/80 text-gray-700">
                     Size
                   </RadioGroup.Label>
@@ -134,7 +142,6 @@ export const ProductDetailsForm = ({
                     {sizes.map((size: any) => (
                       <RadioGroup.Option
                         as="div"
-                        disabled={withFries === "no"}
                         key={size.name}
                         value={size}
                         className={({ active, disabled }) =>

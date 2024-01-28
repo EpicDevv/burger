@@ -50,7 +50,7 @@ export default async function MoreHotProducts({ product }: { product: any }) {
 
         <div className="mt-8 text-sm md:hidden">
           <Link
-            href="#"
+            href="/"
             className="font-medium text-[#008170] hover:text-[#005B41]"
           >
             Shop the collection

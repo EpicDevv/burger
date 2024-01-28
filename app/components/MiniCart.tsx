@@ -18,7 +18,7 @@ export default function MiniCart() {
   cart!.map((item: any) => {
     cartTotal += formatPrice(item?.price) * item?.quantity;
   });
-
+  cartTotal = Number(cartTotal.toFixed(2))
   return (
     <Transition.Root show={cartOpen} as={Fragment}>
       <Dialog
@@ -162,7 +162,7 @@ export default function MiniCart() {
                           onClick={() => {
                             setCartOpen(false);
                           }}
-                          href="/checkout"
+                          href="/cart"
                         >
                           Checkout
                         </Link>
