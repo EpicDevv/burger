@@ -5,17 +5,8 @@ import Layout from "./components/Layout";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  // metadataBase: new URL('https://burger.com'),
   title: "Burger",
   description: "Indulge in juicy goodness with every bite at our burger haven",
-  openGraph: {
-    title: "Burger",
-    description:
-      "Indulge in juicy goodness with every bite at our burger haven",
-  },
-  twitter: {
-    // card: 'summary_large_image',
-  },
 };
 
 export default function RootLayout({
@@ -24,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning lang="en">
-      <body className={`${inter.className} antialiased`}>
+    <html className="h-full" suppressHydrationWarning lang="en">
+      <body className={`${inter.className} antialiased h-full`}>
         <Providers>
           <Layout>{children}</Layout>
         </Providers>

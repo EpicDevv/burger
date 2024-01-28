@@ -19,10 +19,6 @@ interface Icart {
   quantity: number;
 }
 
-async function CartCountFromCookies() {
-  const cartCount = Number(cookies().get("_cart_count")?.value || "0");
-  return <CartCount initialCartCount={cartCount} />;
-}
 export function Header() {
   return (
     <div className="border-b border-gray-900/10 dark:border-white/10 flex items-center justify-between gap-x-3 dark:bg-[#0f0f0f] bg-white px-3 py-3 lg:px-5 lg:py-4">
@@ -49,11 +45,7 @@ export function Header() {
           <CartToggle>
             <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full dark:bg-[#232D3F] border-1 border-[#008170] text-white">
               <ShoppingCartIcon className="w-6 text-[#008170] dark:text-[#008170]" />
-              <div className="absolute -right-1 -top-1 flex h-4 w-4 text-white items-center justify-center rounded-full bg-[#008170] text-sm font-bold">
-                <Suspense fallback={<span></span>}>
-                  <CartCountFromCookies />
-                </Suspense>
-              </div>
+              <CartCount />
             </div>
           </CartToggle>
           <MiniCart />

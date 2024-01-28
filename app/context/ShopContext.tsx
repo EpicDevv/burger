@@ -10,6 +10,14 @@ interface Icart {
   description: string;
   calorie: number;
   quantity: number;
+  additionalItems?: {
+    id: string;
+    name: string;
+    price: number;
+    image: string;
+    description: string;
+    calorie: number;
+  };
 }
 
 interface IcontextProps {
@@ -53,9 +61,20 @@ export default function ShopProvider({
   }, [cart]);
 
   async function add(newItem: Icart) {
-    console.log(newItem);
     setCartOpen(true);
     const newCart = [...cart!];
+    let friesAlreadyAdded = false;
+    if (newItem.additionalItems) {
+      for (let item of newCart) {
+        if (item.id === newItem.additionalItems.id) {
+          item.quantity += 1;
+          friesAlreadyAdded = true;
+        }
+      }
+      if (!friesAlreadyAdded) {
+        newCart.push({ ...newItem.additionalItems, quantity: 1 });
+      }
+    }
     for (let item of newCart) {
       if (item.id === newItem.id) {
         item.quantity += newItem.quantity;

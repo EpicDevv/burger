@@ -1,28 +1,32 @@
-import { XCircleIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
 
-export default function Example() {
+export default function NotFound() {
   return (
-    <div className="h-screen flex items-center justify-center">
-      <div className="rounded-md -mt-40 dark:bg-red-200 bg-red-50 p-4">
-        <div className="flex">
-          <div className="flex-shrink-0">
-            <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
-          </div>
-          <div className="ml-3">
-            <h3 className="text-sm font-medium text-red-800">
-              404 page not found
-            </h3>
-            <div className="mt-2 text-sm text-red-700">
-              <ul role="list" className="list-disc space-y-1 pl-5">
-                <li>
-                  We are sorry, it appears your requested page was not found{" "}
-                </li>
-                <li>Please retry your request</li>
-              </ul>
-            </div>
+    <>
+      <main className="relative isolate min-h-screen">
+        <img
+          src="https://images.unsplash.com/photo-1545972154-9bb223aac798?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3050&q=80&exp=8&con=-15&sat=-75"
+          alt=""
+          className="absolute inset-0 -z-10 h-full w-full object-cover object-top"
+        />
+        <div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">
+          <p className="text-base font-semibold leading-8 text-white">404</p>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl">
+            Page not found
+          </h1>
+          <p className="mt-4 text-base text-white/70 sm:mt-6">
+            Sorry, we couldn’t find the page you’re looking for.
+          </p>
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="/"
+              className="text-sm font-semibold leading-7 text-white"
+            >
+              <span aria-hidden="true">&larr;</span> Back to home
+            </Link>
           </div>
         </div>
-      </div>
-    </div>
+      </main>
+    </>
   );
 }

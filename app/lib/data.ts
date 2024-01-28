@@ -16,3 +16,10 @@ export async function fetchProduct(name: string) {
     return convertNameToUrl(item.name) === name;
   })[0];
 }
+
+export async function fetchFries() {
+  const products = await fetchBurgers();
+  return products.products.filter((item: any) => {
+    return item.name === "Fries with Ketchup";
+  });
+}

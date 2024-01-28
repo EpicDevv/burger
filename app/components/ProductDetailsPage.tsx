@@ -1,7 +1,7 @@
 import { CheckIcon, StarIcon } from "@heroicons/react/20/solid";
 import { ProductDetailsForm } from "../components/ProductDetailsForm";
 import { classNames } from "../utils/helpers";
-import { fetchProduct } from "../lib/data";
+import { fetchFries, fetchProduct } from "../lib/data";
 import MoreHotProducts from "./MoreHotItems";
 import BackButton from "./BackButton";
 import Link from "next/link";
@@ -13,6 +13,7 @@ export default async function ProductDetailsPage({
   product: string;
 }) {
   const productData = await fetchProduct(product);
+  const friesData = await fetchFries();
   return (
     <div className="bg-white dark:bg-[#0F0F0F]">
       <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
@@ -129,7 +130,7 @@ export default async function ProductDetailsPage({
         </div>
 
         {/* Product form */}
-        <ProductDetailsForm product={productData} />
+        <ProductDetailsForm fries={friesData[0]} product={productData} />
       </div>
       {/* More Hot Products */}
       <MoreHotProducts product={productData} />

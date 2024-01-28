@@ -11,12 +11,14 @@ import { CartContext } from "../context/ShopContext";
 export default function MiniCart() {
   const cancelButtonRef = useRef<any>();
 
-  const { cart, cartOpen, remove, setCartOpen, checkoutUrl, removeCartItem } =
-    useContext(CartContext);
+  const { cart, cartOpen, remove, setCartOpen } = useContext(CartContext);
+
   let cartTotal = 0;
-  cart.map((item: any) => {
+
+  cart!.map((item: any) => {
     cartTotal += formatPrice(item?.price) * item?.quantity;
   });
+
   return (
     <Transition.Root show={cartOpen} as={Fragment}>
       <Dialog
@@ -72,12 +74,12 @@ export default function MiniCart() {
 
                     <div className="mt-8">
                       <div className="flow-root">
-                        {cart.length > 0 ? (
+                        {cart!.length > 0 ? (
                           <ul
                             role="list"
                             className="-my-6 divide-y divide-gray-200"
                           >
-                            {cart.map((product: any) => (
+                            {cart!.map((product: any) => (
                               <li key={product.id} className="py-6 flex">
                                 <div className="relative flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
                                   <Image
@@ -145,7 +147,7 @@ export default function MiniCart() {
                       </div>
                     </div>
                   </div>
-                  {cart.length > 0 ? (
+                  {cart!.length > 0 ? (
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-black dark:text-white">
                         <p>Subtotal</p>
