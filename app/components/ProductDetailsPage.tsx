@@ -3,6 +3,7 @@ import { ProductDetailsForm } from "../components/ProductDetailsForm";
 import { classNames } from "../utils/helpers";
 import { fetchProduct } from "../lib/data";
 import MoreHotProducts from "./MoreHotItems";
+import BackButton from "./BackButton";
 import Link from "next/link";
 const reviews = { average: 4, totalCount: 1624 };
 
@@ -14,9 +15,12 @@ export default async function ProductDetailsPage({
   const productData = await fetchProduct(product);
   return (
     <div className="bg-white dark:bg-[#0F0F0F]">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+      <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         {/* Product details */}
         <div className="lg:max-w-lg lg:self-end">
+          <div className="mb-6">
+            <BackButton />
+          </div>
           <nav aria-label="Breadcrumb">
             <ol role="list" className="flex items-center space-x-2">
               <li>
@@ -128,7 +132,7 @@ export default async function ProductDetailsPage({
         <ProductDetailsForm product={productData} />
       </div>
       {/* More Hot Products */}
-      <MoreHotProducts />
+      <MoreHotProducts product={productData} />
     </div>
   );
 }
