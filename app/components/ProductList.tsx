@@ -1,6 +1,7 @@
 import { fetchBurgers } from "../lib/data";
 import Link from "next/link";
 import { convertNameToUrl } from "../utils/helpers";
+import Image from "next/image";
 export default async function ProductList() {
   const burgers = await fetchBurgers();
   return (
@@ -17,7 +18,9 @@ export default async function ProductList() {
               >
                 <div className="group relative flex flex-col overflow-hidden rounded-lg border border-[#008170] bg-white dark:bg-[#0f0f0f]">
                   <div className="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96">
-                    <img
+                    <Image
+                      width={500}
+                      height={500}
                       src={burger.image}
                       alt={burger.name}
                       className="h-full w-full object-cover object-center sm:h-full sm:w-full"

@@ -18,7 +18,7 @@ export default function MiniCart() {
   cart!.map((item: any) => {
     cartTotal += formatPrice(item?.price) * item?.quantity;
   });
-  cartTotal = Number(cartTotal.toFixed(2))
+  cartTotal = Number(cartTotal.toFixed(2));
   return (
     <Transition.Root show={cartOpen} as={Fragment}>
       <Dialog
@@ -83,9 +83,10 @@ export default function MiniCart() {
                               <li key={product.id} className="py-6 flex">
                                 <div className="relative flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
                                   <Image
+                                    width={500}
+                                    height={500}
                                     src={product.image}
                                     alt={product.name}
-                                    layout="fill"
                                     objectFit="cover"
                                   />
                                 </div>

@@ -5,6 +5,7 @@ import { fetchFries, fetchProduct } from "../lib/data";
 import MoreHotProducts from "./MoreHotItems";
 import BackButton from "./BackButton";
 import Link from "next/link";
+import Image from "next/image";
 const reviews = { average: 4, totalCount: 1624 };
 
 export default async function ProductDetailsPage({
@@ -121,7 +122,9 @@ export default async function ProductDetailsPage({
         {/* Product image */}
         <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
           <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
-            <img
+            <Image
+              width={500}
+              height={500}
               src={productData.image}
               alt={`image of ${productData.name}`}
               className="h-full w-full object-cover object-center"

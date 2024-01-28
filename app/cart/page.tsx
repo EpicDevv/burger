@@ -4,7 +4,7 @@ import { CartContext } from "../context/ShopContext";
 import { QuestionMarkCircleIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { convertNameToUrl, formatPrice } from "../utils/helpers";
 import Link from "next/link";
-
+import Image from "next/image";
 export default function Cart() {
   const [mounted, setMounted] = useState(false);
   const { cart, cartOpen, remove, setCartOpen, updateQuantity } =
@@ -40,7 +40,9 @@ export default function Cart() {
                 {cart!.map((product, productIdx) => (
                   <li key={product.id} className="flex py-6 sm:py-10">
                     <div className="flex-shrink-0">
-                      <img
+                      <Image
+                        width={500}
+                        height={500}
                         src={product.image}
                         alt={product.name}
                         className="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48"

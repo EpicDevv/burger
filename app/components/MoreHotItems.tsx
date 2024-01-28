@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { fetchBurgers } from "../lib/data";
 import { convertNameToUrl } from "../utils/helpers";
+import Image from "next/image";
 export default async function MoreHotProducts({ product }: { product: any }) {
   const products = await fetchBurgers();
   const filteredProducts = products.products.filter(
@@ -26,7 +27,9 @@ export default async function MoreHotProducts({ product }: { product: any }) {
           {filteredProducts.map((product: any) => (
             <div key={product.id} className="group relative mb-5">
               <div className="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80">
-                <img
+                <Image
+                  width={500}
+                  height={500}
                   src={product.image}
                   alt={product.name}
                   className="h-full w-full object-cover object-center"
