@@ -7,11 +7,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatPrice } from "../utils/helpers";
 import { CartContext } from "../context/ShopContext";
+import { useRouter } from "next/navigation";
 
 export default function MiniCart() {
   const cancelButtonRef = useRef<any>();
 
   const { cart, cartOpen, remove, setCartOpen } = useContext(CartContext);
+
+  const router = useRouter();
 
   let cartTotal = 0;
 
@@ -27,6 +30,7 @@ export default function MiniCart() {
         className="fixed z-50 inset-0 overflow-hidden"
         onClose={() => {
           setCartOpen(!cartOpen);
+          router.back();
         }}
       >
         <div className="absolute inset-0 overflow-hidden">
@@ -64,7 +68,10 @@ export default function MiniCart() {
                           ref={cancelButtonRef}
                           type="button"
                           className="-m-2 p-2 outline-none text-[#008170] hover:text-gray-500"
-                          onClick={() => setCartOpen(false)}
+                          onClick={() => {
+                            setCartOpen(false);
+                            router.back();
+                          }}
                         >
                           <span className="sr-only">Close panel</span>
                           <XMarkIcon className="h-8 w-8" aria-hidden="true" />
@@ -158,15 +165,15 @@ export default function MiniCart() {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className="mt-6">
-                        <Link
-                          className="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#008170] hover:bg-[#005B41]"
+                        <div
+                          className="flex cursor-pointer justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#008170] hover:bg-[#005B41]"
                           onClick={() => {
                             setCartOpen(false);
+                            window.location.reload();
                           }}
-                          href="/cart"
                         >
                           Checkout
-                        </Link>
+                        </div>
                       </div>
                       <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
                         <p>
@@ -174,7 +181,10 @@ export default function MiniCart() {
                           <button
                             type="button"
                             className="font-medium hover:text-[#008170]"
-                            onClick={() => setCartOpen(false)}
+                            onClick={() => {
+                              setCartOpen(false);
+                              router.back();
+                            }}
                           >
                             Continue Shopping
                             <span aria-hidden="true"> &rarr;</span>

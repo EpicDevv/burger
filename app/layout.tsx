@@ -11,14 +11,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  cartModal,
 }: Readonly<{
   children: React.ReactNode;
+  cartModal: React.ReactNode;
 }>) {
   return (
     <html className="h-full" suppressHydrationWarning lang="en">
       <body className={`${inter.className} antialiased h-full`}>
         <Providers>
-          <Layout>{children}</Layout>
+          <Layout>
+            <div>{children}</div>
+            <div>{cartModal}</div>
+          </Layout>
         </Providers>
       </body>
     </html>
