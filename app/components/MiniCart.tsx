@@ -2,8 +2,10 @@
 import { Fragment, useContext, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon, FaceFrownIcon } from "@heroicons/react/24/outline";
+import { convertNameToUrl } from "../utils/helpers";
 import Image from "next/image";
 import Link from "next/link";
+import { formatPrice } from "../utils/helpers";
 import { CartContext } from "../context/ShopContext";
 
 export default function MiniCart() {
@@ -13,9 +15,8 @@ export default function MiniCart() {
     useContext(CartContext);
   let cartTotal = 0;
   cart.map((item: any) => {
-    cartTotal += item?.variantPrice * item?.quantity;
+    cartTotal += formatPrice(item?.price) * item?.quantity;
   });
-
   return (
     <Transition.Root show={cartOpen} as={Fragment}>
       <Dialog
@@ -77,14 +78,11 @@ export default function MiniCart() {
                             className="-my-6 divide-y divide-gray-200"
                           >
                             {cart.map((product: any) => (
-                              <li
-                                key={product.id + Math.random()}
-                                className="py-6 flex"
-                              >
+                              <li key={product.id} className="py-6 flex">
                                 <div className="relative flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
                                   <Image
                                     src={product.image}
-                                    alt={product.title}
+                                    alt={product.name}
                                     layout="fill"
                                     objectFit="cover"
                                   />
@@ -92,26 +90,30 @@ export default function MiniCart() {
 
                                 <div className="ml-4 flex-1 flex flex-col">
                                   <div>
-                                    <div className="flex justify-between text-base font-medium text-gray-900">
+                                    <div className="flex justify-between text-base font-medium text-[#008170]">
                                       <h3>
-                                        <Link href={`/productspage}`} passHref>
-                                          <a onClick={() => setCartOpen(false)}>
-                                            {product.title}
-                                          </a>
+                                        <Link
+                                          onClick={() => setCartOpen(false)}
+                                          href={`/burger/${convertNameToUrl(
+                                            product.name
+                                          )}`}
+                                          passHref
+                                        >
+                                          {product.name}
                                         </Link>
                                       </h3>
-                                      <p className="ml-4">
-                                        ${" "}
-                                        {product.variantPrice *
+                                      <p className="ml-4 text-black dark:text-white">
+                                        $
+                                        {formatPrice(product.price) *
                                           product.quantity}
                                       </p>
                                     </div>
-                                    <p className="mt-1 text-sm text-gray-500">
-                                      {product.title}
+                                    <p className="mt-1 text-sm text-black dark:text-white">
+                                      calories {product.calorie}
                                     </p>
                                   </div>
                                   <div className="flex-1 flex items-end justify-between text-sm">
-                                    <p className="text-gray-500">
+                                    <p className="text-black dark:text-white">
                                       Qty {product.quantity}
                                     </p>
 
@@ -119,7 +121,7 @@ export default function MiniCart() {
                                       <button
                                         onClick={() => remove(product.id)}
                                         type="button"
-                                        className="font-medium text-gray-500 hover:text-gray-800"
+                                        className="font-medium text-black dark:text-white hover:text-red-500"
                                       >
                                         Remove
                                       </button>
@@ -145,23 +147,22 @@ export default function MiniCart() {
                   </div>
                   {cart.length > 0 ? (
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-                      <div className="flex justify-between text-base font-medium text-gray-900">
+                      <div className="flex justify-between text-base font-medium text-black dark:text-white">
                         <p>Subtotal</p>
                         <p>$ {cartTotal}</p>
                       </div>
-                      <p className="mt-0.5 text-sm text-gray-500">
+                      <p className="mt-0.5 text-sm text-black dark:text-white">
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className="mt-6">
-                        <Link href="/checkout">
-                          <a
-                            onClick={() => {
-                              setCartOpen(false);
-                            }}
-                            className="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-black hover:bg-gray-800"
-                          >
-                            Checkout
-                          </a>
+                        <Link
+                          className="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#008170] hover:bg-[#005B41]"
+                          onClick={() => {
+                            setCartOpen(false);
+                          }}
+                          href="/checkout"
+                        >
+                          Checkout
                         </Link>
                       </div>
                       <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
@@ -169,7 +170,7 @@ export default function MiniCart() {
                           or{" "}
                           <button
                             type="button"
-                            className="font-medium hover:text-gray-800"
+                            className="font-medium hover:text-[#008170]"
                             onClick={() => setCartOpen(false)}
                           >
                             Continue Shopping

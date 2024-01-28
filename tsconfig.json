@@ -26,7 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/context/ShopContext.js"
+    "app/context/ShopContext.tsx"
   ],
   "exclude": ["node_modules"]
 }

@@ -9,6 +9,16 @@ import SearchInput from "./SearchInput";
 import CartToggle from "./CartToggle";
 import MiniCart from "./MiniCart";
 
+interface Icart {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  description: string;
+  calorie: number;
+  quantity: number;
+}
+
 async function CartCountFromCookies() {
   const cartCount = Number(cookies().get("_cart_count")?.value || "0");
   return <CartCount initialCartCount={cartCount} />;

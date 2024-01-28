@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
+import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { RadioGroup } from "@headlessui/react";
 import { FaceSmileIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { classNames } from "../utils/helpers";
+import { CartContext } from "../context/ShopContext";
 
 const sizes = [
   { name: "Small", description: "Not to share" },
@@ -19,18 +21,29 @@ export const ProductDetailsForm = ({ product }: { product: any }) => {
   } | null>(sizes[0]);
   const [withFries, setWithFries] = useState("no");
 
+  const { add } = useContext(CartContext);
+
   useEffect(() => {
     if (withFries === "no") {
       setSelectedSize(null);
     }
   }, [withFries]);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const cartItem = {
+      ...product,
+      quantity: 1,
+    };
+    add(cartItem);
+  };
   return (
     <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
       <section aria-labelledby="options-heading">
         <h2 id="options-heading" className="sr-only">
           Product options
         </h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           {/* With Fries */}
           <div className="mb-5">
             <h2 className="text-sm font-medium text-gray-900 dark:text-white/80">
@@ -155,7 +168,8 @@ export const ProductDetailsForm = ({ product }: { product: any }) => {
               type="submit"
               className="flex Focus:ring-0 outline-none w-full items-center justify-center rounded-md border border-transparent bg-[#008170] px-8 py-3 text-base font-medium text-white hover:bg-[#008170] focus:outline-none focus:ring-[#008170]focus:ring-offset-2 focus:ring-offset-gray-50"
             >
-              Add to bag
+              Add to cart
+              <ShoppingCartIcon className="w-6 text-white ml-5" />
             </button>
           </div>
           <div className="mt-6 text-center">

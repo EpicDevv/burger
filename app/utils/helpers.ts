@@ -12,3 +12,7 @@ export const convertNameToUrl = (name: string): string => {
 export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
+
+export function formatPrice(price: number): number {
+  return Number((price / 100).toFixed(2));
+}
