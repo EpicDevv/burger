@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { fetchBurgers } from "../lib/data";
-import { convertNameToUrl } from "../app/utils/helpers";
+import { convertNameToUrl } from "../utils/helpers";
 import Image from "next/image";
 export default async function MoreHotProducts({ product }: { product: any }) {
   const products = await fetchBurgers();
@@ -15,7 +15,7 @@ export default async function MoreHotProducts({ product }: { product: any }) {
             More Hot Items!
           </h2>
           <Link
-            href="#"
+            href="/"
             className="hidden text-sm font-medium text-[#008170] hover:text-[#005B41] md:block"
           >
             Shop the collection

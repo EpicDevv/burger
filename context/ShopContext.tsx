@@ -28,6 +28,7 @@ interface IcontextProps {
   cart: Icart[] | null;
   cartOpen: boolean;
   setCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  products: any;
 }
 const CartContext = createContext<IcontextProps>({
   updateQuantity: () => {},
@@ -36,12 +37,15 @@ const CartContext = createContext<IcontextProps>({
   cart: [],
   cartOpen: false,
   setCartOpen: () => {},
+  products: [],
 });
 
 export default function ShopProvider({
   children,
+  products,
 }: {
   children: React.ReactNode;
+  products: any;
 }) {
   const router = useRouter();
   const [cart, setCart] = useState<Icart[] | []>(() => {
@@ -116,6 +120,7 @@ export default function ShopProvider({
         cartOpen,
         setCartOpen,
         updateQuantity,
+        products,
       }}
     >
       {children}

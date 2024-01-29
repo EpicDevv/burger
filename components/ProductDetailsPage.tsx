@@ -1,6 +1,6 @@
 import { CheckIcon, StarIcon } from "@heroicons/react/20/solid";
 import { ProductDetailsForm } from "./ProductDetailsForm";
-import { classNames } from "../app/utils/helpers";
+import { classNames } from "../utils/helpers";
 import { fetchFries, fetchProduct } from "../lib/data";
 import MoreHotProducts from "./MoreHotItems";
 import BackButton from "./BackButton";

@@ -2,7 +2,7 @@
 import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../context/ShopContext";
 import { QuestionMarkCircleIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import { convertNameToUrl, formatPrice } from "../utils/helpers";
+import { convertNameToUrl, formatPrice } from "../../utils/helpers";
 import Link from "next/link";
 import Image from "next/image";
 export default function Cart() {
@@ -169,7 +169,9 @@ export default function Cart() {
               </div>
             </section>
           </form>
-        ) : null}
+        ) : (
+          <div className="mt-10">...Loading</div>
+        )}
       </div>
     </div>
   );

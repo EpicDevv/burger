@@ -1,5 +1,5 @@
 import { fetchBurgers } from "../../../lib/data";
-import { convertNameToUrl } from "../../utils/helpers";
+import { convertNameToUrl } from "../../../utils/helpers";
 import ProductDetailsPage from "../../../components/ProductDetailsPage";
 
 export async function generateStaticParams() {

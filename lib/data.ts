@@ -1,4 +1,4 @@
-import { convertNameToUrl } from "../app/utils/helpers";
+import { convertNameToUrl } from "../utils/helpers";
 
 export async function fetchBurgers() {
   try {

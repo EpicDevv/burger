@@ -34,7 +34,9 @@ export function Header() {
           </div>
         </Link>
       </div>
+
       <SearchInput />
+
       <div className="flex items-center justify-center">
         <div className="flex mr-3 flex-1 justify-end">
           <div className="relative z-10">

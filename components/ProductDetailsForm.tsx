@@ -6,7 +6,7 @@ import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { RadioGroup } from "@headlessui/react";
 import { FaceSmileIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { classNames } from "../app/utils/helpers";
+import { classNames } from "../utils/helpers";
 import { CartContext } from "../context/ShopContext";
 import AlertBox from "./AlertBox";
 import { useRouter } from "next/navigation";
