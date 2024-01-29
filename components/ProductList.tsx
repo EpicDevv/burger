@@ -1,6 +1,6 @@
 import { fetchBurgers } from "../lib/data";
 import Link from "next/link";
-import { convertNameToUrl } from "../utils/helpers";
+import { convertNameToUrl } from "../app/utils/helpers";
 import Image from "next/image";
 export default async function ProductList() {
   const burgers = await fetchBurgers();

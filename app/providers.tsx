@@ -2,7 +2,7 @@
 
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-import ShopProvider from "./context/ShopContext";
+import ShopProvider from "../context/ShopContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (

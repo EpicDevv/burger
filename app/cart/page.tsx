@@ -1,6 +1,6 @@
 "use client";
 import { useContext, useState, useEffect } from "react";
-import { CartContext } from "../context/ShopContext";
+import { CartContext } from "../../context/ShopContext";
 import { QuestionMarkCircleIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { convertNameToUrl, formatPrice } from "../utils/helpers";
 import Link from "next/link";

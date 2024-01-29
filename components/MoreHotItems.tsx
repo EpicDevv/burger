@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { fetchBurgers } from "../lib/data";
-import { convertNameToUrl } from "../utils/helpers";
+import { convertNameToUrl } from "../app/utils/helpers";
 import Image from "next/image";
 export default async function MoreHotProducts({ product }: { product: any }) {
   const products = await fetchBurgers();
