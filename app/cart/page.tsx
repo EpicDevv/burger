@@ -1,10 +1,11 @@
 "use client";
 import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../context/ShopContext";
-import { QuestionMarkCircleIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 import { convertNameToUrl, formatPrice } from "../../utils/helpers";
 import Link from "next/link";
 import Image from "next/image";
+import { Product } from "@/types";
 export default function Cart() {
   const [mounted, setMounted] = useState(false);
   const { cart, cartOpen, remove, setCartOpen, updateQuantity } =
@@ -12,8 +13,8 @@ export default function Cart() {
 
   let cartTotal = 0;
 
-  cart!.map((item: any) => {
-    cartTotal += formatPrice(item?.price) * item?.quantity;
+  cart!.map((item: Product) => {
+    cartTotal += formatPrice(item?.price) * item?.quantity!;
   });
   cartTotal = Number(cartTotal.toFixed(2));
 
@@ -21,7 +22,7 @@ export default function Cart() {
     setMounted(true);
   }, []);
 
-  const submit = (e: any) => {
+  const submit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
   return (

@@ -7,8 +7,9 @@ import { CartContext } from "../context/ShopContext";
 import { useRouter } from "next/navigation";
 import { convertNameToUrl, formatPrice } from "@/utils/helpers";
 import Image from "next/image";
+import { Product } from "@/types";
 
-function classNames(...classes: any) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -16,17 +17,17 @@ export default function InputModal({
   open,
   setOpen,
 }: {
-  open: any;
-  setOpen: any;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { products, add } = useContext(CartContext);
   const [query, setQuery] = useState("");
-  const [recent, setRecent] = useState([]);
+  const [recent, setRecent] = useState<Product[]>([]);
   const router = useRouter();
   const filteredproducts =
     query === ""
       ? []
-      : products.products.filter((item: any) => {
+      : products.products.filter((item: Product) => {
           return item.name.toLowerCase().includes(query.toLowerCase());
         });
 
@@ -69,8 +70,8 @@ export default function InputModal({
           >
             <Dialog.Panel className="mx-auto max-w-3xl ring-1 ring-inset ring-[#008170] transform divide-y dark:bg-[#232D3F] divide-[#008170] overflow-hidden rounded-xl bg-white shadow-2xl transition-all">
               <Combobox
-                onChange={(item: any) => {
-                  const newRecent: any = [...recent!];
+                onChange={(item: Product) => {
+                  const newRecent: Product[] = [...recent!];
                   for (let recentItem of newRecent) {
                     if (recentItem.id === item.id) {
                       router.push(`/burger/${convertNameToUrl(item.name)}`);
@@ -109,7 +110,7 @@ export default function InputModal({
                         <div
                           className={classNames(
                             "max-h-96 min-w-0 flex-auto scroll-py-4 overflow-y-auto px-6 py-4",
-                            activeOption && "sm:h-96"
+                            activeOption! && "sm:h-96"
                           )}
                         >
                           {query === "" && (
@@ -126,7 +127,7 @@ export default function InputModal({
                                 }}
                                 className={classNames(
                                   "flex ml-2",
-                                  recent.length === 0 && "hidden"
+                                  recent.length === 0 ? "hidden" : ""
                                 )}
                               >
                                 <XMarkIcon
@@ -139,7 +140,7 @@ export default function InputModal({
                           )}
                           <div className="-mx-2 text-sm text-gray-900">
                             {(query === "" ? recent : filteredproducts).map(
-                              (item: any) => (
+                              (item: Product) => (
                                 <Combobox.Option
                                   as="div"
                                   key={item.id}
@@ -147,8 +148,9 @@ export default function InputModal({
                                   className={({ active }) =>
                                     classNames(
                                       "flex cursor-pointer select-none dark:text-white items-center rounded-md p-2",
-                                      active &&
-                                        "bg-[#008170] bg-opacity-55 dark:text-white text-gray-900"
+                                      active
+                                        ? "bg-[#008170] bg-opacity-55 dark:text-white text-gray-900"
+                                        : ""
                                     )
                                   }
                                 >
@@ -215,7 +217,6 @@ export default function InputModal({
                                   const cartItem = {
                                     ...activeOption,
                                     quantity: 1,
-                                    additionalItems: null,
                                   };
                                   add(cartItem);
                                 }}

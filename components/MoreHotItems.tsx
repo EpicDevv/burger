@@ -2,10 +2,15 @@ import Link from "next/link";
 import { fetchBurgers } from "../lib/data";
 import { convertNameToUrl } from "../utils/helpers";
 import Image from "next/image";
-export default async function MoreHotProducts({ product }: { product: any }) {
+import { Product } from "../types";
+export default async function MoreHotProducts({
+  product,
+}: {
+  product: Product;
+}) {
   const products = await fetchBurgers();
   const filteredProducts = products.products.filter(
-    (item: any) => product.name !== item.name
+    (item: Product) => product.name !== item.name
   );
   return (
     <div className="bg-white dark:bg-[#0F0F0F]">
@@ -24,7 +29,7 @@ export default async function MoreHotProducts({ product }: { product: any }) {
         </div>
 
         <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-          {filteredProducts.map((product: any) => (
+          {filteredProducts.map((product: Product) => (
             <div key={product.id} className="group relative mb-5">
               <div className="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80">
                 <Image

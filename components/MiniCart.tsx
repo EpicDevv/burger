@@ -8,7 +8,7 @@ import Link from "next/link";
 import { formatPrice } from "../utils/helpers";
 import { CartContext } from "../context/ShopContext";
 import { useRouter } from "next/navigation";
-
+import { Product } from "@/types";
 export default function MiniCart() {
   const cancelButtonRef = useRef<any>();
 
@@ -18,8 +18,8 @@ export default function MiniCart() {
 
   let cartTotal = 0;
 
-  cart!.map((item: any) => {
-    cartTotal += formatPrice(item?.price) * item?.quantity;
+  cart!.map((item: Product) => {
+    cartTotal += formatPrice(item?.price) * item?.quantity!;
   });
   cartTotal = Number(cartTotal.toFixed(2));
   return (
@@ -86,7 +86,7 @@ export default function MiniCart() {
                             role="list"
                             className="-my-6 divide-y divide-gray-200"
                           >
-                            {cart!.map((product: any) => (
+                            {cart!.map((product: Product) => (
                               <li key={product.id} className="py-6 flex">
                                 <div className="relative flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
                                   <Image
@@ -115,7 +115,7 @@ export default function MiniCart() {
                                       <p className="ml-4 text-black dark:text-white">
                                         $
                                         {formatPrice(product.price) *
-                                          product.quantity}
+                                          product.quantity!}
                                       </p>
                                     </div>
                                     <p className="mt-1 text-sm text-black dark:text-white">

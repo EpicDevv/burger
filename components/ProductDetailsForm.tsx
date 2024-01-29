@@ -5,11 +5,16 @@ import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { RadioGroup } from "@headlessui/react";
 import { FaceSmileIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
+import { Product } from "@/types";
 import { classNames } from "../utils/helpers";
 import { CartContext } from "../context/ShopContext";
 import AlertBox from "./AlertBox";
 import { useRouter } from "next/navigation";
+
+interface Sizes {
+  name: string;
+  description: string;
+}
 
 const sizes = [
   { name: "Small", description: "Not to share" },
@@ -20,8 +25,8 @@ export const ProductDetailsForm = ({
   product,
   fries,
 }: {
-  product: any;
-  fries: any;
+  product: Product;
+  fries: Product;
 }) => {
   const router = useRouter();
   const [selectedSize, setSelectedSize] = useState<{
@@ -43,7 +48,7 @@ export const ProductDetailsForm = ({
     }
   }, [withFries]);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (withFries === "yes" && selectedSize === null) {
       setAlert({
@@ -143,7 +148,7 @@ export const ProductDetailsForm = ({
                     Size
                   </RadioGroup.Label>
                   <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                    {sizes.map((size: any) => (
+                    {sizes.map((size: Sizes) => (
                       <RadioGroup.Option
                         as="div"
                         key={size.name}

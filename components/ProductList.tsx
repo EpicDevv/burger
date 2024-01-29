@@ -2,6 +2,7 @@ import { fetchBurgers } from "../lib/data";
 import Link from "next/link";
 import { convertNameToUrl } from "../utils/helpers";
 import Image from "next/image";
+import { Product } from "@/types";
 export default async function ProductList() {
   const burgers = await fetchBurgers();
   return (
@@ -10,7 +11,7 @@ export default async function ProductList() {
         <h2 className="sr-only">Products</h2>
 
         <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
-          {burgers.products.map((burger: any) => {
+          {burgers.products.map((burger: Product) => {
             return (
               <Link
                 href={`burger/${convertNameToUrl(burger.name)}`}
@@ -35,9 +36,6 @@ export default async function ProductList() {
                       {burger.description}
                     </p>
                     <div className="flex flex-1 flex-col justify-end">
-                      <p className="text-sm italic dark:text-white text-white">
-                        {burger.options}
-                      </p>
                       <div className="flex justify-between">
                         <p className="text-base font-medium text-gray-900 dark:text-[#008170]">
                           $ {(burger.price / 100).toFixed(2)}

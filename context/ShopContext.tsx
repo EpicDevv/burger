@@ -2,7 +2,7 @@
 
 import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-
+import { Product } from "@/types";
 interface Icart {
   id: string;
   name: string;
@@ -18,7 +18,7 @@ interface Icart {
     image: string;
     description: string;
     calorie: number;
-  };
+  } | null;
 }
 
 interface IcontextProps {
@@ -28,7 +28,7 @@ interface IcontextProps {
   cart: Icart[] | null;
   cartOpen: boolean;
   setCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  products: any;
+  products: { products: Product[] };
 }
 const CartContext = createContext<IcontextProps>({
   updateQuantity: () => {},
@@ -37,7 +37,7 @@ const CartContext = createContext<IcontextProps>({
   cart: [],
   cartOpen: false,
   setCartOpen: () => {},
-  products: [],
+  products: { products: [] },
 });
 
 export default function ShopProvider({
@@ -45,7 +45,7 @@ export default function ShopProvider({
   products,
 }: {
   children: React.ReactNode;
-  products: any;
+  products: { products: Product[] };
 }) {
   const router = useRouter();
   const [cart, setCart] = useState<Icart[] | []>(() => {
