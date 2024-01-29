@@ -82,7 +82,7 @@ export function Footer() {
         <div className="mt-8 md:order-1 md:mt-0">
           <p className="text-center text-xs leading-5 text-gray-500">
             &copy; {`${new Date().getFullYear()}`} Burger, Inc. All rights
-            reserved.
+            reserved. Made by Zayne Lovecraft
           </p>
         </div>
       </div>
