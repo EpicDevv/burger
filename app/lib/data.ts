@@ -2,7 +2,14 @@ import { convertNameToUrl } from "../utils/helpers";
 
 export async function fetchBurgers() {
   try {
-    const res = await fetch("https://burgerhub00.github.io/data/products.json");
+    const res = await fetch(
+      "https://burgerhub00.github.io/data/products.json",
+      {
+        next: {
+          revalidate: 10,
+        },
+      }
+    );
     return res.json();
   } catch (error) {
     console.error("fetch error", error);
