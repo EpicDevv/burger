@@ -105,6 +105,7 @@ export default function Cart() {
 
                           <div className="absolute right-0 top-0">
                             <button
+                              id="button"
                               onClick={() => remove(product.id)}
                               type="button"
                               className="-m-2 inline-flex p-2 text-[#008170] hover:text-[#005B41]"
